@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "881482807120",
+    "project_id": "ecosoft-2a0b6",
+    "storage_bucket": "ecosoft-2a0b6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881482807120:android:e62544e5373e178a265e55",
+        "android_client_info": {
+          "package_name": "com.example.ing_economica_ecosoft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjqeCOr4Q5CTRHR2w0cgVHcUASXJm0fZ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
