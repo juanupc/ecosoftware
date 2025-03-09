@@ -42,43 +42,45 @@ class _BottomTextState extends State<BottomText> {
         behavior: HitTestBehavior.opaque,
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: MouseRegion(
-            onEnter: (_) => setState(() => _isHovered = true),
-            onExit: (_) => setState(() => _isHovered = false),
-            child: RichText(
-              text: TextSpan(
-                style: const TextStyle(fontSize: 16, fontFamily: 'Montserrat'),
-                children: [
-                  TextSpan(
-                    text:
-                        ChangeScreenAnimation.currentScreen ==
-                                Screens.createAccount
-                            ? 'Ya tienes una cuenta? '
-                            : 'No tienes una cuenta? ',
-                    style: const TextStyle(
-                      color: kprimaryColor,
-                      fontWeight: FontWeight.w600,
+          child: RichText(
+            text: TextSpan(
+              style: const TextStyle(fontSize: 16, fontFamily: 'Montserrat'),
+              children: [
+                TextSpan(
+                  text:
+                      ChangeScreenAnimation.currentScreen ==
+                              Screens.createAccount
+                          ? 'Ya tienes una cuenta? '
+                          : 'No tienes una cuenta? ',
+                  style: const TextStyle(
+                    color: kprimaryColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                WidgetSpan(
+                  child: MouseRegion(
+                    onEnter: (_) => setState(() => _isHovered = true),
+                    onExit: (_) => setState(() => _isHovered = false),
+                    cursor: SystemMouseCursors.click,
+                    child: Text(
+                      ChangeScreenAnimation.currentScreen ==
+                              Screens.createAccount
+                          ? 'Iniciar sesión'
+                          : 'Crear cuenta',
+                      style: TextStyle(
+                        color: _isHovered ? kprimaryColor : ksecondaryColor,
+                        fontWeight: FontWeight.bold,
+                        decoration:
+                            _isHovered
+                                ? TextDecoration.underline
+                                : TextDecoration.none,
+                        decorationColor: kprimaryColor,
+                        decorationThickness: 2,
+                      ),
                     ),
                   ),
-                  TextSpan(
-                    text:
-                        ChangeScreenAnimation.currentScreen ==
-                                Screens.createAccount
-                            ? 'Iniciar sesión'
-                            : 'Crear cuenta',
-                    style: TextStyle(
-                      color: _isHovered ? kprimaryColor : ksecondaryColor,
-                      fontWeight: FontWeight.bold,
-                      decoration:
-                          _isHovered
-                              ? TextDecoration.underline
-                              : TextDecoration.none,
-                      decorationColor: kprimaryColor,
-                      decorationThickness: 2,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
