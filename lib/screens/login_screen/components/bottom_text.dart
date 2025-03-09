@@ -1,4 +1,4 @@
-import 'package:flutter/gestures.dart';
+//import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ing_economica_ecosoft/screens/login_screen/animations/change_screen_animation.dart';
 import 'package:ing_economica_ecosoft/screens/login_screen/components/login_content.dart';
@@ -13,6 +13,7 @@ class BottomText extends StatefulWidget {
 }
 
 class _BottomTextState extends State<BottomText> {
+  bool _isHovered = false;
   @override
   void initState() {
     ChangeScreenAnimation.bottomTextAnimation.addStatusListener((status) {
@@ -41,32 +42,43 @@ class _BottomTextState extends State<BottomText> {
         behavior: HitTestBehavior.opaque,
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: RichText(
-            text: TextSpan(
-              style: const TextStyle(fontSize: 16, fontFamily: 'Montserrat'),
-              children: [
-                TextSpan(
-                  text:
-                      ChangeScreenAnimation == Screens.createAccount
-                          ? 'Ya tienes una cuenta? '
-                          : 'No tienes una cuenta? ',
-                  style: const TextStyle(
-                    color: kprimaryColor,
-                    fontWeight: FontWeight.w600,
+          child: MouseRegion(
+            onEnter: (_) => setState(() => _isHovered = true),
+            onExit: (_) => setState(() => _isHovered = false),
+            child: RichText(
+              text: TextSpan(
+                style: const TextStyle(fontSize: 16, fontFamily: 'Montserrat'),
+                children: [
+                  TextSpan(
+                    text:
+                        ChangeScreenAnimation.currentScreen ==
+                                Screens.createAccount
+                            ? 'Ya tienes una cuenta? '
+                            : 'No tienes una cuenta? ',
+                    style: const TextStyle(
+                      color: kprimaryColor,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                TextSpan(
-                  text:
-                      ChangeScreenAnimation.currentScreen ==
-                              Screens.createAccount
-                          ? 'Iniciar sesión'
-                          : 'Crear cuenta',
-                  style: const TextStyle(
-                    color: ksecondaryColor,
-                    fontWeight: FontWeight.bold,
+                  TextSpan(
+                    text:
+                        ChangeScreenAnimation.currentScreen ==
+                                Screens.createAccount
+                            ? 'Iniciar sesión'
+                            : 'Crear cuenta',
+                    style: TextStyle(
+                      color: _isHovered ? kprimaryColor : ksecondaryColor,
+                      fontWeight: FontWeight.bold,
+                      decoration:
+                          _isHovered
+                              ? TextDecoration.underline
+                              : TextDecoration.none,
+                      decorationColor: kprimaryColor,
+                      decorationThickness: 2,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
